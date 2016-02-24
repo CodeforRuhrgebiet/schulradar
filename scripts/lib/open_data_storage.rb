@@ -67,11 +67,11 @@ class OpenDataStorage
     File.read([@storage_dir, name].join('/'))
   end
 
-  def schulform_by_key(key)
+  def rechtsform_by_key(key)
     @rechtsformen[key]
   end
 
-  def rechtsform_by_key(key)
+  def schulform_by_key(key)
     @schulformen[key]
   end
 
