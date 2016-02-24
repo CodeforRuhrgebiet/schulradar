@@ -1,20 +1,40 @@
+#!/usr/bin/ruby
+
 require 'nokogiri'
 require 'json'
 require 'open-uri'
 
-@cities = [
+require './prepare'
+require './city_store'
+require './city'
+
+
+# Fetching all requirements
+fetch_all_requirements!
+
+# Cities that are supported
+city_values = [
   {
-    name: "Essen",
-    postcodes: [
-      '45127', '45128', '45130', '45131', '45133', '45134',
-      '45136', '45138', '45139', '45141', '45143', '45144',
-      '45145', '45147', '45149', '45219', '45239', '45257',
-      '45259', '45276', '45277', '45279', '45289', '45307',
-      '45309', '45326', '45327', '45329', '45355', '45356',
-      '45357', '45359'
-    ]
+    name: 'Essen',
+    postcodes: %w(45127 45128 45130 45131 45133 45134 45136 45138 45139 45141 45143 45144 45145 45147 45149 45219 45239 45257 45259 45276 45277 45279 45289 45307 45309 45326 45327 45329 45355 45356 45357 45359)
   }
 ]
+
+# Logic
+city_store = CityStore.new
+
+city_values.each do |single_city_values|
+  city_store.add_city(City.new(single_city_values))
+
+end
+
+@@cities.each { |city| city.hello }
+
+City.print_all_cities
+
+exit
+
+
 
 def included_city?(postcode)
   found_postcode = false
@@ -29,7 +49,7 @@ end
 
 # calc stuff
 def calc_coordinates(east, north)
-  puts "=> getting coordinates.."
+  puts '=> getting coordinates..'
   east = east.to_s[0...7]
   north = north.to_s[0...7]
   output = []
@@ -137,7 +157,7 @@ def schuldaten_as_geojson_features
   xml_schools.each_with_index do |schule, index|
     puts "School #{index+1}/#{school_count}"
     if included_city?(schule.css("PLZ").children.text)
-      coordinates = calc_coordinates(schule.css("KoordinatenRechtswert").children.text, schule.css("KoordinatenHochwert").children.text)
+      coordinates = calc_coordinates(schule.css('KoordinatenRechtswert').children.text, schule.css('KoordinatenHochwert').children.text)
       feature = {
         type: 'Feature',
         geometry: {
@@ -145,23 +165,23 @@ def schuldaten_as_geojson_features
           coordinates: [coordinates[:long], coordinates[:lat]]
         },
         properties: {
-          schulnummer: schule.css("Schulnummer").children.text,
+          schulnummer: schule.css('Schulnummer').children.text,
           schulbezeichnung: [
-            schule.css("Schulbezeichnung_1").children.text,
-            schule.css("Schulbezeichnung_2").children.text,
-            schule.css("Schulbezeichnung_3").children.text
+            schule.css('Schulbezeichnung_1').children.text,
+            schule.css('Schulbezeichnung_2').children.text,
+            schule.css('Schulbezeichnung_3').children.text
             ].join,
-          schulform: get_schulform_by_key(schule.css("Schulform").children.text),
-          rechtsform: get_rechtsform_by_key(schule.css("Rechtsform").children.text),
-          schultrager: get_schultraeger_by_key(schule.css("Traegernummer").children.text),
-          gemeindeschluessel: schule.css("Gemeindeschluessel").children.text,
-          schulbetrieb: get_schulbetrieb_by_key(schule.css("Schulbetriebsschluessel").children.text),
-          plz: schule.css("PLZ").children.text
+          schulform: get_schulform_by_key(schule.css('Schulform').children.text),
+          rechtsform: get_rechtsform_by_key(schule.css('Rechtsform').children.text),
+          schultrager: get_schultraeger_by_key(schule.css('Traegernummer').children.text),
+          gemeindeschluessel: schule.css('Gemeindeschluessel').children.text,
+          schulbetrieb: get_schulbetrieb_by_key(schule.css('Schulbetriebsschluessel').children.text),
+          plz: schule.css('PLZ').children.text
         }
       }
       schools.push(feature)
     else
-      puts "=> school not in specified location"
+      puts '=> school not in specified location'
     end
   end
 
