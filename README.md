@@ -38,6 +38,7 @@ $ git submodule init && git submodule update
 ```bash
 $ bundle install
 ```
+   *-> bundler not found: `gem install bundler`*
 
 ### Daten generieren
 
