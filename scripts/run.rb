@@ -4,15 +4,9 @@ require 'nokogiri'
 require 'json'
 require 'open-uri'
 
-require './prepare'
-require './city_store'
-require './city'
+Dir['./lib/*.rb'].each {|file| require file }
 
-
-# Fetching all requirements
-fetch_all_requirements!
-
-# Cities that are supported
+# Config
 city_values = [
   {
     name: 'Essen',
@@ -21,43 +15,22 @@ city_values = [
 ]
 
 # Logic
+open_data = OpenDataStorage.new
+open_data.fetch_all_requirements!
+
 city_store = CityStore.new
+city_values.each { |cv| city_store.add_city(City.new(open_data, cv)) }
+city_store.cities.each { |city| city.fetch_schools! }
+city_store.cities.each { |city| city.save_to_file! }
 
-city_values.each do |single_city_values|
-  city_store.add_city(City.new(single_city_values))
-
-end
-
-@@cities.each { |city| city.hello }
-
-City.print_all_cities
-
+puts 'DONE!!! :)'
 exit
 
 
 
-def included_city?(postcode)
-  found_postcode = false
-  @cities.each do |city|
-    if city[:postcodes].include?(postcode)
-      found_postcode = true
-      break
-    end
-  end
-  found_postcode ? true : false
-end
 
-# calc stuff
-def calc_coordinates(east, north)
-  puts '=> getting coordinates..'
-  east = east.to_s[0...7]
-  north = north.to_s[0...7]
-  output = []
-  p = IO.popen("python ./calc_coordinates.py #{east} #{north}")
-  p.each { |line| output << line.chomp }
-  p.close
-  {lat: output[0].to_f, long: output[1].to_f}
-end
+
+
 
 ## Rechtsformen
 @rechtsformen = false
@@ -139,66 +112,6 @@ def set_schulbetriebe!
   @schulbetriebe = schulbetriebe
 end
 set_schulbetriebe!
-
-
-## Schulen
-@schulen = false
-@schuldaten_file = 'https://www.schulministerium.nrw.de/BiPo/OpenData/Schuldaten/schuldaten.xml'
-
-def schuldaten_as_geojson_features
-  puts "Fetching schools.."
-  schools = []
-  #data = File.open("schuldaten_test.xml").read
-  data = open(@schuldaten_file)
-
-  doc = Nokogiri::XML(data)
-  xml_schools = doc.search('//Schule')
-  school_count = xml_schools.size
-  xml_schools.each_with_index do |schule, index|
-    puts "School #{index+1}/#{school_count}"
-    if included_city?(schule.css("PLZ").children.text)
-      coordinates = calc_coordinates(schule.css('KoordinatenRechtswert').children.text, schule.css('KoordinatenHochwert').children.text)
-      feature = {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [coordinates[:long], coordinates[:lat]]
-        },
-        properties: {
-          schulnummer: schule.css('Schulnummer').children.text,
-          schulbezeichnung: [
-            schule.css('Schulbezeichnung_1').children.text,
-            schule.css('Schulbezeichnung_2').children.text,
-            schule.css('Schulbezeichnung_3').children.text
-            ].join,
-          schulform: get_schulform_by_key(schule.css('Schulform').children.text),
-          rechtsform: get_rechtsform_by_key(schule.css('Rechtsform').children.text),
-          schultrager: get_schultraeger_by_key(schule.css('Traegernummer').children.text),
-          gemeindeschluessel: schule.css('Gemeindeschluessel').children.text,
-          schulbetrieb: get_schulbetrieb_by_key(schule.css('Schulbetriebsschluessel').children.text),
-          plz: schule.css('PLZ').children.text
-        }
-      }
-      schools.push(feature)
-    else
-      puts '=> school not in specified location'
-    end
-  end
-
-  schools
-end
-
-def save_to_file!(filename, data)
-  puts "Saving data into #{filename}.."
-  File.open(filename, 'w') do |file|
-    file.print data.to_json
-  end
-end
-
-object = obj = {
-  type: 'FeatureCollection',
-  features: schuldaten_as_geojson_features
-}
 
 save_to_file!('./dist/schulen.geojson', object)
 puts 'DONE!! :)'
