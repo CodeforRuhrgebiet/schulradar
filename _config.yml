@@ -19,3 +19,8 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+
+collections:
+  cities:
+    output: true
+    permalink: /stadt/:path/

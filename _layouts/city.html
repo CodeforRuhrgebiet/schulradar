@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{% for city in site.cities %}
+  {% if page.key == city.key %}
+    {% assign meta = city %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<h1>Schulen in {{ meta.name }}</h1>
+
+<p>#### KARTE ####</p>
+
+
+<h2>Auswertungen</h2>
+

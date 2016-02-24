@@ -12,11 +12,12 @@ $brand-danger:          #f04124;
 $brand-info:            #5bc0de;
 
 
+
 // Core variables and mixins
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
-// // Reset and dependencies
+// Reset and dependencies
 @import "bootstrap/normalize";
 @import "bootstrap/print";
 
@@ -30,7 +31,7 @@ $brand-info:            #5bc0de;
 @import "bootstrap/forms";
 @import "bootstrap/buttons";
 
-// // Components
+// Components
 @import "bootstrap/animation";
 @import "bootstrap/dropdown";
 @import "bootstrap/button-group";
@@ -43,7 +44,7 @@ $brand-info:            #5bc0de;
 @import "bootstrap/pagination";
 @import "bootstrap/pager";
 @import "bootstrap/labels";
-//@import "bootstrap/jumbotron";
+@import "bootstrap/jumbotron";
 @import "bootstrap/alert";
 @import "bootstrap/progress";
 @import "bootstrap/media";
@@ -52,12 +53,13 @@ $brand-info:            #5bc0de;
 @import "bootstrap/close";
 
 // Components w/ JavaScript
-//@import "bootstrap/modal";
-//@import "bootstrap/tooltip";
-//@import "bootstrap/popover";
-//@import "bootstrap/carousel";
+@import "bootstrap/modal";
+@import "bootstrap/tooltip";
+@import "bootstrap/popover";
+@import "bootstrap/carousel";
 
 // Utility classes
 @import "bootstrap/utilities";
+@import "bootstrap/utilities-background";
 @import "bootstrap/utilities-spacing";
 @import "bootstrap/utilities-responsive";
