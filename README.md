@@ -24,11 +24,11 @@
 Make sure __*ruby*__ and __*python*__ are installed.
 
 ```bash
-$ git clone git@github.com:CodeforRuhrgebiet/schulradar-data-collector.git
+$ git clone git@github.com:CodeforRuhrgebiet/schulradar.git
 ```
 
 ```bash
-$ cd schulradar-data-collector
+$ cd schulradar
 ```
 
 ```bash
