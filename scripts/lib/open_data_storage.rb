@@ -35,6 +35,18 @@ class OpenDataStorage
         local: 'schuldaten.xml'
       }
     ]
+
+    @rechtsformen = false
+    parse_rechtsformen!
+
+    @schulformen = false
+    parse_schulformen!
+
+    @schultraeger = false
+    parse_schultraeger!
+
+    @schulbetriebe = false
+    parse_schulbetriebe!
   end
 
   def fetch_all_requirements!
@@ -56,18 +68,65 @@ class OpenDataStorage
   end
 
   def schulform_by_key(key)
-    "lalal"
+    @rechtsformen[key]
   end
 
   def rechtsform_by_key(key)
-    "lalala"
+    @schulformen[key]
   end
 
   def schultraeger_by_key(key)
-    "lalallaaa"
+    @schultraeger[key]
   end
 
   def schulbetrieb_by_key(key)
-    "allalalal"
+    @schulbetriebe[key]
+  end
+
+  private
+
+  # Setter
+  def parse_rechtsformen!
+    rechtsformen = {}
+    raw = read_file('key_rechtsform.xml')
+    doc = Nokogiri::XML(raw)
+    doc.search('//Rechtsform').each do |rechtsform|
+      rechtsformen["#{rechtsform.css("Schluessel").children.text}"] = rechtsform.css("Bezeichnung").children.text
+    end
+
+    @rechtsformen = rechtsformen
+  end
+
+  def parse_schulformen!
+    schulformen = {}
+    raw = read_file('key_schulformschluessel.xml')
+    doc = Nokogiri::XML(raw)
+    doc.search('//Schulform').each do |schulform|
+      schulformen["#{schulform.css("Schluessel").children.text}"] = schulform.css("Bezeichnung").children.text
+    end
+
+    @schulformen = schulformen
+  end
+
+  def parse_schultraeger!
+    schultraeger_list = {}
+    raw = read_file('key_traeger.xml')
+    doc = Nokogiri::XML(raw)
+    doc.search('//Traeger').each do |schultraeger|
+      schultraeger_list["#{schultraeger.css("Traegernummer").children.text}"] = schultraeger.css("Traegerbezeichnung_1").children.text
+    end
+
+    @schultraeger = schultraeger_list
+  end
+
+  def parse_schulbetriebe!
+    schulbetriebe = {}
+    raw = read_file('key_schulbetriebsschluessel.xml')
+    doc = Nokogiri::XML(raw)
+    doc.search('//Schulbetrieb').each do |schulbetrieb|
+      schulbetriebe["#{schulbetrieb.css("Schluessel").children.text}"] = schulbetrieb.css("Bezeichnung").children.text
+    end
+
+    @schulbetriebe = schulbetriebe
   end
 end
