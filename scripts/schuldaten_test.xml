@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schuldaten>
+  <Schule>
+    <Schulnummer>100018</Schulnummer>
+    <Schulform>17</Schulform>
+    <Schulbezeichnung_1><![CDATA[Freie Waldorfschule Rudolf Steiner Schu-]]></Schulbezeichnung_1>
+    <Schulbezeichnung_2><![CDATA[le u. Parzivalsch. m. Heliandzw.,Förder-]]></Schulbezeichnung_2>
+    <Schulbezeichnung_3><![CDATA[schule,Staatl. genehm.priv. Ersatzschule]]></Schulbezeichnung_3>
+    <Kurzbezeichnung><![CDATA[Essen, FW Schellstraße]]></Kurzbezeichnung>
+    <PLZ>45134</PLZ>
+    <Ort><![CDATA[Essen]]></Ort>
+    <Strasse><![CDATA[Schellstr. 47]]></Strasse>
+    <Telefonvorwahl>0201</Telefonvorwahl>
+    <Telefon>435150</Telefon>
+    <Faxvorwahl>0201</Faxvorwahl>
+    <Fax>4351511</Fax>
+    <E-Mail>100018@schule.nrw.de</E-Mail>
+    <Homepage>http://www.waldorfschule-essen.de</Homepage>
+    <Rechtsform>2</Rechtsform>
+    <Traegernummer>70610</Traegernummer>
+    <Gemeindeschluessel>05113000</Gemeindeschluessel>
+    <KoordinatenRechtswert>25716820</KoordinatenRechtswert>
+    <KoordinatenHochwert>56982960</KoordinatenHochwert>
+    <Schulbetriebsschluessel>1</Schulbetriebsschluessel>
+    <Schulbetriebsdatum>01.08.1973</Schulbetriebsdatum>
+  </Schule>
+  <Schule>
+    <Schulnummer>100020</Schulnummer>
+    <Schulform>02</Schulform>
+    <Schulbezeichnung_1><![CDATA[Städt. Kath. Grundschule]]></Schulbezeichnung_1>
+    <Schulbezeichnung_2><![CDATA[Kartause-Hain-Schule]]></Schulbezeichnung_2>
+    <Schulbezeichnung_3><![CDATA[- Primarstufe -]]></Schulbezeichnung_3>
+    <Kurzbezeichnung><![CDATA[Düsseldorf, KG Kartause-Hain-Schule]]></Kurzbezeichnung>
+    <PLZ>40468</PLZ>
+    <Ort><![CDATA[Düsseldorf]]></Ort>
+    <Strasse><![CDATA[Unterrather Str. 76]]></Strasse>
+    <Telefonvorwahl>0211</Telefonvorwahl>
+    <Telefon>4791163</Telefon>
+    <Faxvorwahl>0211</Faxvorwahl>
+    <Fax>4299019</Fax>
+    <E-Mail>100020@schule.nrw.de</E-Mail>
+    <Homepage>http://www.schulen.duesseldorf.de/gs-unterratherstr</Homepage>
+    <Rechtsform>1</Rechtsform>
+    <Traegernummer>10042</Traegernummer>
+    <Gemeindeschluessel>05111000</Gemeindeschluessel>
+    <KoordinatenRechtswert>25546880</KoordinatenRechtswert>
+    <KoordinatenHochwert>56825310</KoordinatenHochwert>
+    <Schulbetriebsschluessel>1</Schulbetriebsschluessel>
+    <Schulbetriebsdatum>01.08.1973</Schulbetriebsdatum>
+  </Schule>
+</Schuldaten>
