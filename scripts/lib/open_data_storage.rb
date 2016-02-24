@@ -68,7 +68,15 @@ class OpenDataStorage
   end
 
   def rechtsform_by_key(key)
-    @rechtsformen[key]
+    #@rechtsformen[key]
+    case key
+      when '1'
+        'öffentlich'
+      when "2"
+        'privat'
+      else
+        puts 'unbekannt'
+    end
   end
 
   def schulform_by_key(key)
