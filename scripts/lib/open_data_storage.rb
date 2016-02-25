@@ -4,7 +4,7 @@ class OpenDataStorage
     east = east.to_s[0...7]
     north = north.to_s[0...7]
     output = []
-    p = IO.popen("python ./calc_coordinates.py #{east} #{north}")
+    p = IO.popen("python #{@@project_root}/scripts/calc_coordinates.py #{east} #{north}")
     p.each { |line| output << line.chomp }
     p.close
     {lat: output[0].to_f, long: output[1].to_f}
@@ -12,7 +12,7 @@ class OpenDataStorage
 
   # Instance Methods
   def initialize
-    @storage_dir = './.opendata'
+    @storage_dir = "#{@@project_root}/scripts/.opendata"
     @requirements = [
       {
         url: 'https://www.schulministerium.nrw.de/BiPo/OpenData/Schuldaten/key_rechtsform.xml',

@@ -3,8 +3,10 @@
 require 'nokogiri'
 require 'json'
 require 'open-uri'
+require 'erb'
 
-Dir['./lib/*.rb'].each {|file| require file }
+@@project_root = File.expand_path('..', File.dirname(__FILE__))
+Dir["#{@@project_root}/scripts/lib/*.rb"].each {|file| require file }
 
 # Config
 city_values = [
@@ -16,12 +18,12 @@ city_values = [
 
 # Logic
 open_data = OpenDataStorage.new
-open_data.fetch_all_requirements!
+#open_data.fetch_all_requirements!
 
 city_store = CityStore.new
 city_values.each { |cv| city_store.add_city(City.new(open_data, cv)) }
 city_store.cities.each { |city| city.fetch_schools! }
-city_store.cities.each { |city| city.save_to_file! }
+city_store.cities.each { |city| city.save_to_files! }
 
 puts 'DONE!!! :)'
 exit

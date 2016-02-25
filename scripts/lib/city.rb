@@ -1,10 +1,14 @@
 class City
+  include ERB::Util
+
   def initialize(open_data, city_values)
     @open_data = open_data
     @name = city_values[:name]
+    @key = city_values[:name].downcase
     puts "# Initializing City: #{@name}"
     @postcodes = city_values[:postcodes]
     @schools = []
+    @text = 'OMG, IT WORKS!!!!'
   end
 
   def fetch_schools!
@@ -21,23 +25,31 @@ class City
     end
   end
 
-  def save_to_file!
-    destination_path = "./dist/#{@name.downcase}.geojson"
-
-    data = {
-      type: 'FeatureCollection',
-      features: @schools
-    }
-
-    puts "Saving data into #{destination_path} ..."
-    File.open(destination_path, 'w') do |file|
-      file.print data.to_json
-    end
+  def save_to_files!
+    data = {type: 'FeatureCollection', features: @schools}
+    File.open("#{geojson_directory}/#{@key}.geojson", 'w') { |file| file.print data.to_json }
+    File.open("#{city_collection_directory}/#{@key}.md", 'w+') { |f| f.write(render) }
   end
 
   private
 
   def within_postcode?(postcode)
     @postcodes.include?(postcode)
+  end
+
+  def render
+    ERB.new(template).result(binding)
+  end
+
+  def geojson_directory
+    "#{@@project_root}/js/cities"
+  end
+
+  def city_collection_directory
+    "#{@@project_root}/_cities"
+  end
+
+  def template
+    File.read("#{city_collection_directory}/_city.md.erb")
   end
 end

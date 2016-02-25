@@ -18,7 +18,7 @@ url: "http://codeforruhrgebiet.github.io" # the base hostname & protocol for you
 # Build settings
 markdown: kramdown
 
-exclude: ['scripts']
+exclude: ['scripts', '_cities/_city.md.erb']
 
 collections:
   cities:
