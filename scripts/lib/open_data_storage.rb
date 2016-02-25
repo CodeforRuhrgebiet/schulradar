@@ -35,7 +35,6 @@ class OpenDataStorage
         local: 'schuldaten.xml'
       },
       {
-        # url: 'http://datendealer.s3.amazonaws.com/2011/3/17/OpenGeoDB_plz_ort_de.csv?AWSAccessKeyId=1TEVHDFT15DXKCHHNPR2&Expires=1456485413&Signature=fCslDq8jYlVUdHx9wVM03bnMYdI%3D',
         url: 'http://www.fa-technik.adfc.de/code/opengeodb/PLZ.tab',
         local: 'PLZ.tab'
       }

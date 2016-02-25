@@ -4,7 +4,8 @@
 
 ## Datenquellen
 
-* https://open.nrw/de/dataset/msw_001
+* https://open.nrw/de/dataset/msw_001 ([dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0))
+* http://opengeodb.org/wiki/PLZ.tab (Gemeinfrei)
 
 ## Herausforderungen
 
