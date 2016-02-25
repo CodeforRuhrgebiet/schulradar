@@ -18,7 +18,9 @@ city_values = [
 
 # Logic
 open_data = OpenDataStorage.new
-open_data.fetch_all_requirements!
+
+# uncomment the following line to update the open data files
+#open_data.fetch_all_requirements!
 
 city_store = CityStore.new
 city_values.each { |cv| city_store.add_city(City.new(open_data, cv)) }
