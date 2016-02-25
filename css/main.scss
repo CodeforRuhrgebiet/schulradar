@@ -17,6 +17,23 @@
 #schoolMap { height: 480px; }
 
 // own bootstrap elements
-.list-dark-links > li > a { color: $gray-dark; }
+.btn-white {
+  @include button-variant($gray-dark, #fff, #fff);
+}
 
+.btn-white-outline {
+  @include button-outline-variant(#fff);
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $gray;
+  }
+  @include hover {
+    color: $gray;
+  }
+}
+
+.list-dark-links > li > a { color: $gray-dark; }
 .text-white { color: white; }

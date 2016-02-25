@@ -14,7 +14,8 @@
       {{ content }}
     </div>
 
-    <div class="m-t-3 p-t-3 p-b-2" style="background: #79CCC9;">
+    {% unless page.url contains '/ueber' %}
+    <div class="m-t-3 p-t-3 p-b-3" style="background: #79CCC9;">
       <div class="container">
         <div class="row text-xs-center">
           <div class="col-xs-12 text-white">
@@ -22,13 +23,14 @@
               Wir nutzen <strong>Offene Daten</strong>, um dieses Projekt zu realisieren.
             </p>
             <br>
-            <a href="" class="btn btn-primary-outline">
+            <a href="{{ site.github.url }}/ueber" class="btn btn-white-outline">
               <strong>Jetzt mehr erfahren</strong>
             </a>
           </div>
         </div>
       </div>
     </div>
+    {% endunless %}
 
     {% include footer.html %}
 
