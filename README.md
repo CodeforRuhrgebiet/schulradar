@@ -21,7 +21,7 @@
 
 **How to:**
 * [Webseite bearbeiten](#webseite-bearbeiten)
-* [Stadt hinzufügen](#stadt-hinzufuegen)
+* [Stadt hinzufügen](#stadt-hinzufügen)
 
 ### Einrichtung / Initiale Schritte
 
