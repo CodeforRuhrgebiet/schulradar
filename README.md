@@ -60,3 +60,5 @@ alternative:
 ### Stadt hinzufügen
 
 Stadt in der `supported_cities.yml` eintragen.
+
+und im Anschluss `$ ruby ./scripts/run.rb` ausführen.

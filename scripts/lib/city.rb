@@ -16,12 +16,15 @@ class City
   # Instance Methods
   def initialize(open_data, city_values)
     @open_data = open_data
+
+    puts "# Initializing City: #{city_values[:name]}"
     @name = city_values[:name]
     @key = city_values[:key]
-    puts "# Initializing City: #{@name}"
+    @map_latitude = city_values[:map_latitude]
+    @map_longitude = city_values[:map_longitude]
+    @map_zoomlevel = city_values[:map_zoomlevel]
     @postcodes = city_postcodes(city_values[:city_name_in_postcode_file])
     @schools = []
-    @text = 'OMG, IT WORKS!!!!'
   end
 
   def fetch_schools!
