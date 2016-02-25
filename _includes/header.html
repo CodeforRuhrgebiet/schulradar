@@ -1,39 +1,22 @@
-<style>
-  body { margin:0; padding:0; }
-  #headermap {
-    height: 200px;
-    width: 100%;
-  }
+<div class="position: relative;">
+  <div id='headermap'></div>
 
-  .leaflet-container {
-    cursor: default;
-    background: #fff;
-  }
-
-  @keyframes map-fade-in {
-    0%   { opacity: 0.3; }
-    100% { opacity: 1; }
-  }
-
-  .leaflet-layer {
-    /*opacity: 0.6;*/
-    animation: map-fade-in 1s infinite;
-    animation-delay: 2s;
-    transition: opacity .7s;
-  }
-
-  .leaflet-layer:hover {
-    opacity: 0.6 !important;
-  }
-</style>
-
-<div id='headermap'></div>
+  <div class="container text-center">
+    <div class="header-text" style="position: absolute; top: 0;">
+      <a class="nav-link {{ homepage_active }}" href="{{ site.github.url }}/">
+        <span class="title-title">
+          <mark>{{ site.title }}<br></mark>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
-
   var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
   var headerMap = L.map('headermap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
 
+  // remove all controls
   headerMap.dragging.disable();
   headerMap.touchZoom.disable();
   headerMap.doubleClickZoom.disable();
@@ -41,22 +24,32 @@
   headerMap.keyboard.disable();
   if (headerMap.tap) headerMap.tap.disable();
 
-  // basemap
+  // start map
   var mapboxLayer = L.tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg', {
     attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
   }).addTo(headerMap);
 </script>
 
 <header class="site-header">
-  <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand" href="{{ site.github.url }}/">{{ site.title }}</a>
+  <nav class="navbar navbar-dark navbar-branded-color">
     <ul class="nav navbar-nav">
-      {% for my_page in site.pages %}
-        {% if my_page.title %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ site.github.url }}{{ my_page.url }}">{{ my_page.title }}</a>
-          </li>
+      <li class="nav-item">
+        {% if page.path == 'index.html' %}
+        {% assign homepage_active = 'active' %}
         {% endif %}
+        <a class="nav-link {{ homepage_active }}" href="{{ site.github.url }}/">
+          <strong>Die Städte</strong>
+        </a>
+      </li>
+      {% assign navigation = site.data.navigation %}
+      {% for link in navigation %}
+      {% assign current = nil %}
+      {% if page.url contains link.url %}
+      {% assign active = 'active' %}
+      {% endif %}
+      <li class="nav-item {% if forloop.first %}first{% endif %} {{ active }} {% if forloop.last %}last{% endif %}">
+        <a class="nav-link" href="{{ link.url }}"><strong>{{ link.title }}</strong></a>
+      </li>
       {% endfor %}
     </ul>
   </nav>
