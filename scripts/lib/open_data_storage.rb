@@ -33,6 +33,11 @@ class OpenDataStorage
       {
         url: 'https://www.schulministerium.nrw.de/BiPo/OpenData/Schuldaten/schuldaten.xml',
         local: 'schuldaten.xml'
+      },
+      {
+        # url: 'http://datendealer.s3.amazonaws.com/2011/3/17/OpenGeoDB_plz_ort_de.csv?AWSAccessKeyId=1TEVHDFT15DXKCHHNPR2&Expires=1456485413&Signature=fCslDq8jYlVUdHx9wVM03bnMYdI%3D',
+        url: 'http://www.fa-technik.adfc.de/code/opengeodb/PLZ.tab',
+        local: 'PLZ.tab'
       }
     ]
 
@@ -47,6 +52,8 @@ class OpenDataStorage
 
     @schulbetriebe = false
     parse_schulbetriebe!
+
+    @city_postcodes = {}
   end
 
   def fetch_all_requirements!
@@ -61,6 +68,10 @@ class OpenDataStorage
         end
       end
     end
+  end
+
+  def process_data!
+    map_postcodes_to_city!
   end
 
   def read_file(name)
@@ -89,6 +100,10 @@ class OpenDataStorage
 
   def schulbetrieb_by_key(key)
     @schulbetriebe[key]
+  end
+
+  def city_postcodes_by_key(key)
+    @city_postcodes[key]
   end
 
   private
@@ -136,5 +151,13 @@ class OpenDataStorage
     end
 
     @schulbetriebe = schulbetriebe
+  end
+
+  def map_postcodes_to_city!
+    file_entries = CSV.read([@storage_dir, 'PLZ.tab'].join('/'), { :col_sep => "\t" })
+    file_entries.each do |entry|
+      @city_postcodes["#{entry[4]}"] = [] if !@city_postcodes["#{entry[4]}"]
+      @city_postcodes["#{entry[4]}"].push("#{entry[1]}")
+    end
   end
 end
