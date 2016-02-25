@@ -9,57 +9,60 @@ layout: default
   {% endif %}
 {% endfor %}
 
-<h1 class="h4">Schulen in {{ meta.name }}</h1>
+<div class="container">
 
-<div id="schoolMap"></div>
-<script>
-  var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
-  {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
-  {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
-  {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
+  <h1 class="h4 text-xs-center"><mark>Schulen in {{ meta.name }}</mark></h1>
 
-  var schoolMap = L.map('schoolMap').setView([latitude, longitude], zoomlevel);
+  <div id="schoolMap" class="m-t-3"></div>
+  <script>
+    var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
+    {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
+    {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
+    {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
 
-  // improve experience on mobile
-  if (schoolMap.tap) schoolMap.tap.disable();
+    var schoolMap = L.map('schoolMap').setView([latitude, longitude], zoomlevel);
 
-  // adding layers
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
-    id: 'maschurig.p8gbjfbc',
-    accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
-  }).addTo(schoolMap);
+    // improve experience on mobile
+    if (schoolMap.tap) schoolMap.tap.disable();
 
-
-  // adding data
-  $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
-    L.geoJson(data, {
-      style: function (feature) {
-        return feature.properties.style;
-      },
-      onEachFeature: function (feature, layer) {
-        var publicText = '<span class="label label-success">öffentlich</span>';
-        var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
-        var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
-
-        layer.bindPopup(
-          '<b>' + feature.properties.schulbezeichnung
-          + '<br><br>'
-          + publicText + ' ' + betriebText
-          + '<br><br>'
-          + schulformText
-          + '<br><br>'
-          + 'Träger: ' + feature.properties.schultrager
-          + '<br><br>'
-        );
-      }
+    // adding layers
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
+      id: 'maschurig.p8gbjfbc',
+      accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
     }).addTo(schoolMap);
-  });
-</script>
 
 
-<br>
-<br>
-<h2>Auswertungen</h2>
+    // adding data
+    $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
+      L.geoJson(data, {
+        style: function (feature) {
+          return feature.properties.style;
+        },
+        onEachFeature: function (feature, layer) {
+          var publicText = '<span class="label label-success">öffentlich</span>';
+          var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
+          var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
+
+          layer.bindPopup(
+            '<b>' + feature.properties.schulbezeichnung
+            + '<br><br>'
+            + publicText + ' ' + betriebText
+            + '<br><br>'
+            + schulformText
+            + '<br><br>'
+            + 'Träger: ' + feature.properties.schultrager
+            + '<br><br>'
+          );
+        }
+      }).addTo(schoolMap);
+    });
+  </script>
 
 
+  <br>
+  <br>
+  <h2>Auswertungen</h2>
+
+
+</div>

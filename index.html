@@ -2,24 +2,28 @@
 layout: default
 ---
 
-<h1 class="h4 text-xs-center"><mark>Schulen im Ruhrgebiet</mark></h1>
+<div class="container">
+  <h1 class="h4 text-xs-center"><mark>Schulen im Ruhrgebiet</mark></h1>
 
-<div class="row m-t-3 m-b-3">
-{% for city in site.cities %}
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-block">
-        <h2 class="card-title">{{ city.name }}</h2>
-        <p class="card-text">
-          <progress class="progress progress-success progress-animated" value="25" max="100"
-                    data-toggle="tooltip" data-placement="bottom" title="25% öffentliche Schulen">25% öffentliche Schulen</progress>
-          <i>25% öffentliche Schulen</i>
-        </p>
-      </div>
-      <div class="card-footer text-xs-center text-muted">
-        <a href="{{ site.github.url }}/stadt/{{ city.key }}/" class="btn btn-primary">Schulen anzeigen</a>
-      </div>
+  <div class="row m-t-3 m-b-3">
+  {% for city in site.cities %}
+    <div class="col-sm-6">
+      <a href="{{ site.github.url }}/stadt/{{ city.key }}/">
+        <div class="card">
+          <div class="card-block3">
+            <h2 class="card-title text-xs-center m-t-1 m-b-1">Stadt {{ city.name }}</h2>
+            <!--<p class="card-text">-->
+              <!--<progress class="progress progress-success progress-animated" value="25" max="100"-->
+                        <!--data-toggle="tooltip" data-placement="bottom" title="25% öffentliche Schulen">25% öffentliche Schulen</progress>-->
+              <!--<i>25% öffentliche Schulen</i>-->
+            <!--</p>-->
+          </div>
+          <!--<div class="card-footer text-xs-center text-muted">-->
+            <!--<a href="{{ site.github.url }}/stadt/{{ city.key }}/" class="btn btn-primary">Schulen anzeigen</a>-->
+          <!--</div>-->
+        </div>
+      </a>
     </div>
+  {% endfor %}
   </div>
-{% endfor %}
 </div>
