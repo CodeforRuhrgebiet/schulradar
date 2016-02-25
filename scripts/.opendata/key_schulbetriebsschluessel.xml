@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Daten>
+	<Schulbetrieb>
+		<Schluessel>0</Schluessel>
+		<Bezeichnung><![CDATA[Schule wird zum Ende des laufenden Schuljahres aufgelöst]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>1</Schluessel>
+		<Bezeichnung><![CDATA[Schule hat Schulbetrieb]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>2</Schluessel>
+		<Bezeichnung><![CDATA[Schule wird zu einem späteren Zeitpunkt als zum Ende des laufenden Schuljahres aufgelöst]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>3</Schluessel>
+		<Bezeichnung><![CDATA[Schule nimmt den Schulbetrieb auf ab (Datum)]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>4</Schluessel>
+		<Bezeichnung><![CDATA[Schulbetrieb ruht]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>5</Schluessel>
+		<Bezeichnung><![CDATA[Gelöschte Schule, die für die Stellendatei (STD) noch bestehen bleiben muss]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>6</Schluessel>
+		<Bezeichnung><![CDATA[Wie Schulbetriebsschlüssel 1, nimmt jedoch nur an bestimmten Erhebungen teil (nicht ASD). Erhält Schulmail]]></Bezeichnung>
+	</Schulbetrieb>
+	<Schulbetrieb>
+		<Schluessel>9</Schluessel>
+		<Bezeichnung><![CDATA[Zum letzten Schuljahresende gelöschte Schule, die für Zwecke der Amtlichen Schuldaten (ASD) ein Jahr weiterbestehen muss]]></Bezeichnung>
+	</Schulbetrieb>
+</Daten>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Daten>
+	<Schulform>
+		<Schluessel>02</Schluessel>
+		<Bezeichnung><![CDATA[Grundschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>04</Schluessel>
+		<Bezeichnung><![CDATA[Hauptschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>06</Schluessel>
+		<Bezeichnung><![CDATA[Volksschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>08</Schluessel>
+		<Bezeichnung><![CDATA[Förderschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>10</Schluessel>
+		<Bezeichnung><![CDATA[Realschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>13</Schluessel>
+		<Bezeichnung><![CDATA[Primus (Schulversuch)]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>14</Schluessel>
+		<Bezeichnung><![CDATA[Sekundarschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>15</Schluessel>
+		<Bezeichnung><![CDATA[Gesamtschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>16</Schluessel>
+		<Bezeichnung><![CDATA[Gemeinschaftsschule (Schulversuch)]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>17</Schluessel>
+		<Bezeichnung><![CDATA[Waldorfschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>18</Schluessel>
+		<Bezeichnung><![CDATA[Hiberniaschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>20</Schluessel>
+		<Bezeichnung><![CDATA[Gymnasium]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>25</Schluessel>
+		<Bezeichnung><![CDATA[Weiterbildungskolleg]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>30</Schluessel>
+		<Bezeichnung><![CDATA[Berufskolleg]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>83</Schluessel>
+		<Bezeichnung><![CDATA[Schule für Kranke]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>85</Schluessel>
+		<Bezeichnung><![CDATA[Förderschule im Bereich der Realschule]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>87</Schluessel>
+		<Bezeichnung><![CDATA[Förderschule im Bereich des Gymnasiums]]></Bezeichnung>
+	</Schulform>
+	<Schulform>
+		<Schluessel>88</Schluessel>
+		<Bezeichnung><![CDATA[Förderschule im Bereich des Berufskollegs]]></Bezeichnung>
+	</Schulform>
+</Daten>

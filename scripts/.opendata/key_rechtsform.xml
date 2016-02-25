@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Daten>
+	<Rechtsform>
+		<Schluessel>1</Schluessel>
+		<Bezeichnung><![CDATA[in öffentlicher Trägerschaft]]></Bezeichnung>
+	</Rechtsform>
+	<Rechtsform>
+		<Schluessel>2</Schluessel>
+		<Bezeichnung><![CDATA[in Trägerschaft eines Ersatzschulträgers (privat)]]></Bezeichnung>
+	</Rechtsform>
+</Daten>
