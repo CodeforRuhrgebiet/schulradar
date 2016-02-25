@@ -17,7 +17,7 @@ class School
           @doc.css('Schulbezeichnung_1').children.text,
           @doc.css('Schulbezeichnung_2').children.text,
           @doc.css('Schulbezeichnung_3').children.text
-        ].join,
+        ].join("\n"),
         schulform: @open_data.schulform_by_key(@doc.css('Schulform').children.text),
         rechtsform: @open_data.rechtsform_by_key(@doc.css('Rechtsform').children.text),
         schultrager: @open_data.schultraeger_by_key(@doc.css('Traegernummer').children.text),
