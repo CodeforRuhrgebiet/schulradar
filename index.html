@@ -8,7 +8,7 @@ layout: default
   <div class="col-xs-12">
     {% for city in site.cities %}
       <li>
-        <a href="/stadt/{{ city.key }}/">{{ city.name }}</a>
+        <a href="{{ site.github.url }}//stadt/{{ city.key }}/">{{ city.name }}</a>
       </li>
     {% endfor %}
   </div>

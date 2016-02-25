@@ -5,7 +5,7 @@
       {% for my_page in site.pages %}
         {% if my_page.title %}
           <li class="nav-item active">
-            <a class="nav-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+            <a class="nav-link" href="{{ site.github.url }}/{{ my_page.url }}">{{ my_page.title }}</a>
           </li>
         {% endif %}
       {% endfor %}
