@@ -124,6 +124,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages (= 51)
+  github-pages
   jekyll
   json
