@@ -11,20 +11,16 @@ layout: default
 
 <h1>Schulen in {{ meta.name }}</h1>
 
-<p>#### KARTE ####</p>
-
 <div id="map"></div>
 
 
 <h2>Auswertungen</h2>
 
 <style>#map { height: 480px; }</style>
-
 <script>
-
   var schools;
   $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
-    schools = data.features
+    schools = data.features;
     initMap();
   });
 
@@ -46,12 +42,28 @@ layout: default
     mapboxLayer.addTo(map);
 
     L.geoJson(schools, {
-      style: function(feature) {
-        switch (feature.properties.party) {
-          case 'Republican': return {color: "#ff0000"};
-          case 'Democrat':   return {color: "#0000ff"};
-        }
+      style: function (feature) {
+        return feature.properties.style;
+      },
+      onEachFeature: function (feature, layer) {
+        console.log(feature);
+        var publicText = '<span class="label label-success">öffentlich</span>';
+        var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
+        var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
+
+        layer.bindPopup(
+          '<b>' + feature.properties.schulbezeichnung
+          + '<br><br>'
+          + publicText + ' ' + betriebText
+          + '<br><br>'
+          + schulformText
+          + '<br><br>'
+          + 'Träger: ' + feature.properties.schultrager
+          + '<br><br>'
+        );
       }
     }).addTo(map);
+
+
   };
 </script>

@@ -4,18 +4,24 @@ layout: default
 
 <h1>Schulen in folgenden Städten</h1>
 
+
 <div class="row">
-  <div class="col-xs-12">
-
-    <div class="card-group">
-      {% for city in site.cities %}
-
-        <div class="card card-block">
-          <h4 class="card-title">{{ city.name }}</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="{{ site.github.url }}/stadt/{{ city.key }}/" class="card-link">Schulen anzeigen</a>
-        </div>
-      {% endfor %}
+{% for city in site.cities %}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-block">
+        <h2 class="card-title">{{ city.name }}</h2>
+        <p class="card-text">
+          <progress class="progress progress-success progress-animated" value="25" max="100"
+                    data-toggle="tooltip" data-placement="bottom" title="25% öffentliche Schulen">25% öffentliche Schulen</progress>
+          <i>25% öffentliche Schulen</i>
+        </p>
+      </div>
+      <div class="card-footer text-xs-center text-muted">
+        <a href="{{ site.github.url }}/stadt/{{ city.key }}/" class="btn btn-primary">Schulen anzeigen</a>
+      </div>
     </div>
   </div>
+{% endfor %}
 </div>
+

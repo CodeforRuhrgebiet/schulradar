@@ -1,3 +1,52 @@
+<style>
+  body { margin:0; padding:0; }
+  #headermap {
+    height: 200px;
+    width: 100%;
+  }
+
+  .leaflet-container {
+    cursor: default;
+    background: #fff;
+  }
+
+  @keyframes map-fade-in {
+    0%   { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
+
+  .leaflet-layer {
+    /*opacity: 0.6;*/
+    animation: map-fade-in 1s infinite;
+    animation-delay: 2s;
+    transition: opacity .7s;
+  }
+
+  .leaflet-layer:hover {
+    opacity: 0.6 !important;
+  }
+</style>
+
+<div id='headermap'></div>
+
+<script>
+
+  var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
+  var headerMap = L.map('headermap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
+
+  headerMap.dragging.disable();
+  headerMap.touchZoom.disable();
+  headerMap.doubleClickZoom.disable();
+  headerMap.scrollWheelZoom.disable();
+  headerMap.keyboard.disable();
+  if (headerMap.tap) headerMap.tap.disable();
+
+  // basemap
+  var mapboxLayer = L.tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg', {
+    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
+  }).addTo(headerMap);
+</script>
+
 <header class="site-header">
   <nav class="navbar navbar-light bg-faded">
     <a class="navbar-brand" href="{{ site.github.url }}/">{{ site.title }}</a>
