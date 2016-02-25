@@ -19,6 +19,10 @@
 
 ## Mitmachen
 
+**How to:**
+* [Webseite bearbeiten](#webseite-bearbeiten)
+* [Stadt hinzufügen](#stadt-hinzufuegen)
+
 ### Einrichtung / Initiale Schritte
 
 Make sure __*ruby*__ and __*python*__ are installed.
@@ -51,3 +55,7 @@ $ bundle install
 alternative:
 
 `$ bundle exec jekyll serve -w`
+
+### Stadt hinzufügen
+
+`....`
