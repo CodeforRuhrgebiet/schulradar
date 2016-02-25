@@ -3,17 +3,10 @@
   height: 200px;
   width: 100%;
   z-index: -1;
-}
 
-.leaflet-container {
-  cursor: default !important;
-  background: #fff !important;
-}
-
-.leaflet-layer {
-  transition: opacity .7s;
-  &:hover {
-    opacity: 0.6 !important;
+  &.leaflet-container {
+    cursor: default !important;
+    background: rgba(#79CCC9, 0.5) !important;
   }
 }
 

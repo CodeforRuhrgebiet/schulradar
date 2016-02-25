@@ -9,44 +9,35 @@ layout: default
   {% endif %}
 {% endfor %}
 
-<h1>Schulen in {{ meta.name }}</h1>
+<h1 class="h4">Schulen in {{ meta.name }}</h1>
 
-<div id="map"></div>
-
-
-<h2>Auswertungen</h2>
-
-<style>#map { height: 480px; }</style>
+<div id="schoolMap"></div>
 <script>
-  var schools;
+  var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
+  {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
+  {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
+  {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
+
+  var schoolMap = L.map('schoolMap').setView([latitude, longitude], zoomlevel);
+
+  // improve experience on mobile
+  if (schoolMap.tap) schoolMap.tap.disable();
+
+  // adding layers
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
+    id: 'maschurig.p8gbjfbc',
+    accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
+  }).addTo(schoolMap);
+
+
+  // adding data
   $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
-    schools = data.features;
-    initMap();
-  });
-
-  var initMap = function initMap() {
-    var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
-    {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
-    {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
-    {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
-
-    var map = L.map('map').setView([latitude, longitude], zoomlevel);
-
-    // basemap
-    var mapboxLayer = L.tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg', {
-      attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
-      minZoom: 5
-    });
-
-    // load basemaps
-    mapboxLayer.addTo(map);
-
-    L.geoJson(schools, {
+    L.geoJson(data, {
       style: function (feature) {
         return feature.properties.style;
       },
       onEachFeature: function (feature, layer) {
-        console.log(feature);
         var publicText = '<span class="label label-success">öffentlich</span>';
         var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
         var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
@@ -62,8 +53,13 @@ layout: default
           + '<br><br>'
         );
       }
-    }).addTo(map);
-
-
-  };
+    }).addTo(schoolMap);
+  });
 </script>
+
+
+<br>
+<br>
+<h2>Auswertungen</h2>
+
+

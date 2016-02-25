@@ -1,5 +1,5 @@
 <div class="position: relative;">
-  <div id='headermap'></div>
+  <div id="headermap"></div>
 
   <div class="container text-center">
     <div class="header-text" style="position: absolute; top: 0;">
@@ -14,6 +14,18 @@
 
 <script>
   var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
+  {% if page.layout == 'city' %}
+    {% for city in site.cities %}
+      {% if page.key == city.key %}
+        {% assign meta = city %}
+          {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
+          {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
+          zoomlevel = 16;
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
   var headerMap = L.map('headermap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
 
   // remove all controls
@@ -24,9 +36,11 @@
   headerMap.keyboard.disable();
   if (headerMap.tap) headerMap.tap.disable();
 
-  // start map
-  var mapboxLayer = L.tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg', {
-    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>'
+  // adding layers
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
+    id: 'maschurig.p8ga1p99',
+    accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
   }).addTo(headerMap);
 </script>
 
