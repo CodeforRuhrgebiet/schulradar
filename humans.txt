@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <name> -- <role> -- <twitter>
+    Martin Schurig -- project idea -- @martinschurig
+
+# THANKS
+
+    <name>
+
+# Site
+
+    Tools: jekyll
