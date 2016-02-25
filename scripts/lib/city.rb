@@ -4,7 +4,12 @@ class City
   def self.supported_cities
     city_values = []
     cities_as_yml = File.open("#{@@project_root}/supported_cities.yml")
-    YAML::load(cities_as_yml).each { |city| city_values.push({ name: city['name'], city_name_in_postcode_file: city['city_name_in_postcode_file'] }) }
+
+    YAML::load(cities_as_yml).each do |city|
+      better_hash = city.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      city_values.push(better_hash)
+    end
+
     city_values
   end
 
@@ -12,7 +17,7 @@ class City
   def initialize(open_data, city_values)
     @open_data = open_data
     @name = city_values[:name]
-    @key = city_values[:name].downcase
+    @key = city_values[:key]
     puts "# Initializing City: #{@name}"
     @postcodes = city_postcodes(city_values[:city_name_in_postcode_file])
     @schools = []

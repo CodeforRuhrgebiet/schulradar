@@ -58,4 +58,4 @@ alternative:
 
 ### Stadt hinzufügen
 
-`....`
+Stadt in der `supported_cities.yml` eintragen.
