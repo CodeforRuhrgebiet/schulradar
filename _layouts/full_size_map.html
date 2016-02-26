@@ -1,0 +1,127 @@
+---
+layout: base
+---
+
+<script src="{{ '/js/lib/L.Control.Locate.min.js' | site.github.url }}"></script>
+<script src="{{ '/js/lib/leaflet.markercluster.js' | site.github.url }}"></script>
+<script src="{{ '/js/lib/leaflet.awesome-markers.min.js' | site.github.url }}"></script>
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  html, body, #schoolMap {
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+{% if page.layout == 'city_map' %}
+  {% if page.key %}
+    {% capture backLink %}{{ site.github.url }}/stadt/{{ page.key }}/{% endcapture %}
+  {% endif %}
+{% else %}
+  {% capture backLink %}{{ site.github.url }}/{% endcapture %}
+{% endif %}
+
+<div class="navbar navbar-default map-navbar" style="position: fixed;left: 0; z-index: 1030;">
+  <a href="{{ backLink }}" title="Karte schließen" class="btn btn-white">
+    <span class="fa fa-times"><span class="hidden-sm-down"> schließen</span></span>
+  </a>
+  <button title="Hilfe zur Karte" type="button" class="btn btn-white m-l-2" data-toggle="modal" data-target="#helpModal">
+    <span class="fa fa-question-circle"><span class="hidden-sm-down"> Hilfe</span></span>
+  </button>
+
+  <!--<button title="Filter einstellen" type="button" class="btn btn-white m-l-2" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">-->
+    <!--<span class="fa fa-filter"><span class="hidden-sm-down"> Filter</span></span>-->
+  <!--</button>-->
+
+  <!--<div class="collapse m-t-1" id="collapseFilter">-->
+    <!--<div class="row">-->
+      <!--<div class="col-xs-11 col-sm-11 col-md-8 col-lg-5">-->
+        <!--<div class="card card-block">-->
+          <!--<h2 class="h4">Filter einstellen</h2>-->
+
+          <!--<div class="checkbox">-->
+            <!--<label>-->
+              <!--<input type="checkbox" checked>-->
+              <!--Schulbetrieb andeuten<br>-->
+              <!--<small><em>(transparent, wenn nicht in Betrieb)</em></small>-->
+            <!--</label>-->
+          <!--</div>-->
+
+          <!--<div class="checkbox">-->
+            <!--<label>-->
+              <!--<input type="checkbox" checked>-->
+              <!--Öffentliche Schulen und Privatschulen hervorheben<br>-->
+              <!--<small><em>(privat wird lila, öffentlich grün)</em></small>-->
+            <!--</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+
+
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="helpModalLabel">Hilfe zur Karte</h4>
+      </div>
+      <div class="modal-body">
+        <p>Jeder Punkt auf der Karte steht für eine Schule.</p>
+
+        <p>
+          <span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> öffentliche Schule
+        </p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> private Schule
+        </p>
+
+        <hr>
+
+        <p><small class=""><em>
+          Transparente Punkte auf der Karte zeigen ehemalige Schulen bzw. Schulen,
+          in denen momentan der Schulbetrieb ruht.
+        </em></small></p>
+
+        <p>
+          <span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> kein Schulbetrieb (öffentliche Schule)
+        </p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> kein Schulbetrieb (private Schule)
+        </p>
+
+        <hr>
+
+        <small><a href="{{ site.github.url }}/imp/" target="_blank">Impressum</a></small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Hilfe schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="schoolMap" class="custom-popup"></div>
+
+
+<script>
+  var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10, clusterEnabled = false;
+</script>
+
+{{ content }}

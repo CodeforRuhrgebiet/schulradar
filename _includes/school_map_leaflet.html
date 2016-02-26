@@ -1,0 +1,114 @@
+<script>
+  var schoolMap = L.map('schoolMap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
+  new L.Control.Zoom({ position: 'topright' }).addTo(schoolMap);
+  L.control.locate({
+    position: 'topright',  // set the location of the control
+    strings: {
+      title: "Zeige mir wo ich bin",
+      metersUnit: "Meter",
+      feetUnit: "Fuß",
+      popup: "Du bist innerhalb {distance} {unit} von diesem Punkt aus",
+      outsideMapBoundsMsg: "Du befindest dich anscheint außerhalb der verfügbaren Karte"
+    },
+    locateOptions: { maxZoom: 16 }
+  }).addTo(schoolMap);
+
+  // improve experience on mobile
+  if (schoolMap.tap) schoolMap.tap.disable();
+
+  // adding layers
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
+    id: 'maschurig.p8gbjfbc',
+    accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
+  }).addTo(schoolMap);
+
+  L.AwesomeMarkers.Icon.prototype.options.prefix = 'fa';
+
+  var publicSchoolMarker = L.AwesomeMarkers.icon({
+    icon: 'circle',
+    markerColor: 'blue',
+    iconColor: '#fff'
+  });
+
+  var privateSchoolMarker = L.AwesomeMarkers.icon({
+    icon: 'circle',
+    markerColor: 'purple',
+    iconColor: '#fff'
+  });
+
+  if(clusterEnabled) { var markers = L.markerClusterGroup(); }
+
+  var addSchoolsToMap = function(data) {
+    var geoJsonLayer = L.geoJson(data, {
+      pointToLayer: function (feature, latlng) {
+        var markerIcon, markerOpacity = 1;
+        if(feature.properties.rechtsform_schluessel === '1') {
+          markerIcon = publicSchoolMarker;
+        } else {
+          markerIcon = privateSchoolMarker;
+        }
+
+        if(feature.properties.schulbetrieb_schluessel === '0' ||
+          feature.properties.schulbetrieb_schluessel === '1' ||
+          feature.properties.schulbetrieb_schluessel === '2' ||
+          feature.properties.schulbetrieb_schluessel === '6'
+        ) {
+          markerOpacity = 1;
+        } else {
+          markerOpacity = 0.3;
+        }
+
+        return new L.marker(latlng, {
+          icon: markerIcon,
+          opacity: markerOpacity
+        });
+      },
+      onEachFeature: function (feature, layer) {
+        var rechtsformText, betriebText, schulformText, traegerText, conditionalColumnText;
+        if(feature.properties.rechtsform_schluessel === '1') {
+          rechtsformText = '<span class="label" style="background-color: #2EA6DC">öffentlich</span>';
+        } else {
+          rechtsformText = '<span class="label" style="background-color: #CF4BB7">privat</span>';
+        }
+
+        betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
+        schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
+        traegerText = '<small>Träger: ' + feature.properties.schultrager + '</small>';
+        conditionalColumnText = traegerText;
+        if(feature.properties.homepage) {
+          conditionalColumnText = (
+            '<div class="row">' +
+            '<div class="col-xs-6">' + traegerText + '</div>' +
+            '<div class="col-xs-6 text-xs-right"><small>' +
+            '<a href="' + feature.properties.homepage + '" target="_blank">' +
+            'Webseite öffnen <span class="fa fa-external-link"></span>' +
+            '</a>' +
+            '</div>' +
+            '</div>'
+          )
+        }
+
+        popupHtml = (
+          '<p>' + feature.properties.schulbezeichnung + '</p>' +
+          rechtsformText + ' ' + schulformText + ' ' + betriebText +
+          '<p class="text-muted">' +
+          feature.properties.strasse + '<br>' +
+          feature.properties.plz + ', ' + feature.properties.ort +
+          '</p>' +
+          conditionalColumnText
+        )
+
+        var popup = L.popup().setContent(popupHtml);
+        layer.bindPopup(popup);
+      }
+    });
+
+    if(clusterEnabled) {
+      markers.addLayer(geoJsonLayer);
+      schoolMap.addLayer(markers);
+    } else {
+      schoolMap.addLayer(geoJsonLayer);
+    }
+  }
+</script>

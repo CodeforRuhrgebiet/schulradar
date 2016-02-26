@@ -1,0 +1,18 @@
+---
+layout: full_size_map
+---
+
+<script>
+  closeLink = ''
+  clusterEnabled = true;
+</script>
+
+{% include school_map_leaflet.html %}
+
+<script>
+  {% for city in site.city_maps %}
+    $.getJSON( "/js/cities/{{ city.key }}.geojson", function(data) {
+      addSchoolsToMap(data);
+    });
+  {% endfor %}
+</script>
