@@ -8,13 +8,27 @@
     name: "Essen"
     key: "essen"
     city_name_in_postcode_file: "Essen"
-    map_latitude: 51.4556432
-    map_longitude: 7.011555199999975
-    map_zoomlevel: 12
+    map_latitude: 51.4507657
+    map_longitude: 7.0139047
+    map_zoomlevel: 13
   -
     name: "Bochum"
     key: "bochum"
     city_name_in_postcode_file: "Bochum"
     map_latitude: 51.4818445
     map_longitude: 7.216236299999991
-    map_zoomlevel: 12
+    map_zoomlevel: 13
+  -
+    name: "Dortmund"
+    key: "dortmund"
+    city_name_in_postcode_file: "Dortmund"
+    map_latitude: 51.5172138
+    map_longitude: 7.4594456
+    map_zoomlevel: 13
+  -
+    name: "Duisburg"
+    key: "duisburg"
+    city_name_in_postcode_file: "Duisburg"
+    map_latitude: 51.4293898
+    map_longitude: 6.7770832
+    map_zoomlevel: 13

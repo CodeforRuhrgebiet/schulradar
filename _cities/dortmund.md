@@ -1,10 +1,10 @@
 ---
 # this file is the template file for the city collections
 layout: city
-key: essen
-path: essen
-name: Essen
-latitude: 51.4507657
-longitude: 7.0139047
+key: dortmund
+path: dortmund
+name: Dortmund
+latitude: 51.5172138
+longitude: 7.4594456
 zoomlevel: 13
 ---
