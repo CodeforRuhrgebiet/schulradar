@@ -1,6 +1,6 @@
 class OpenDataStorage
   def self.calc_coordinates(east, north)
-    puts "=> getting coordinates.. (Rechtswert:#{east}, Hochwert:#{north})"
+    # puts "=> getting coordinates.. (Rechtswert:#{east}, Hochwert:#{north})"
     east = east.to_s[0...7]
     north = north.to_s[0...7]
     output = []
@@ -167,7 +167,7 @@ class OpenDataStorage
   end
 
   def map_schools_to_postcodes!
-    puts 'Mapping schools to postcodes..'
+    puts 'Mapping schools to postcodes..'.green
     raw = read_file('schuldaten.xml')
     doc = Nokogiri::XML(raw)
     xml_schools = doc.search('//Schule')
@@ -176,6 +176,6 @@ class OpenDataStorage
       @postcode_schools["#{school_postcode}"] = [] if !@postcode_schools["#{school_postcode}"]
       @postcode_schools["#{school_postcode}"].push(school)
     end
-    puts 'Finished mapping schools to postcodes!'
+    puts '=> finished mapping schools to postcodes!'
   end
 end

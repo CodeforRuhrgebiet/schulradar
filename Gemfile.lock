@@ -14,6 +14,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colorator (0.1)
+    colorize (0.7.7)
     ethon (0.8.1)
       ffi (>= 1.3.0)
     execjs (2.6.0)
@@ -124,6 +125,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   github-pages
   jekyll
   json
+  nokogiri

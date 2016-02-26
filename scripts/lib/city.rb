@@ -28,7 +28,7 @@ class City
   end
 
   def fetch_schools_from_postcode!
-    puts "Fetching schools for #{@name}..."
+    puts "Fetching schools for #{@name}...".green
     @postcodes.each do |postcode|
       schools = @open_data.schools_by_postcode(postcode)
       schools.each do |school|
@@ -36,7 +36,7 @@ class City
         @schools.push(s.as_feature)
       end
     end
-    puts "Finished fetching schools for #{@name}!"
+    puts "=> finished fetching schools for #{@name}!"
   end
 
   def fetch_schools_from_xml!
