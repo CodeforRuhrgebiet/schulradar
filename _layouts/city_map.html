@@ -24,30 +24,34 @@ layout: base
 
 <div class="navbar navbar-default navbar-fixed-top map-navbar">
   <a href="{{ site.github.url }}/stadt/{{ meta.key }}/" title="Karte schließen" class="btn btn-white m-r-2">
-    <span class="fa fa-times"></span>
+    <span class="fa fa-times"><span class="hidden-sm-down"> Schließen</span></span>
   </a>
   <button title="Filter einstellen" type="button" class="btn btn-white" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-    <span class="fa fa-filter"></span>
+    <span class="fa fa-filter"><span class="hidden-sm-down"> Filter</span></span>
   </button>
 
   <div class="collapse m-t-1" id="collapseFilter">
-    <div class="card card-block">
-      <h2 class="h4">Filter einstellen</h2>
+    <div class="row">
+      <div class="col-xs-11 col-sm-11 col-md-8 col-lg-5">
+        <div class="card card-block">
+          <h2 class="h4">Filter einstellen</h2>
 
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" checked>
-          Schulbetrieb andeuten<br>
-          <small><em>(transparent, wenn nicht in Betrieb)</em></small>
-        </label>
-      </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked>
+              Schulbetrieb andeuten<br>
+              <small><em>(transparent, wenn nicht in Betrieb)</em></small>
+            </label>
+          </div>
 
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" checked>
-          Öffentliche Schulen und Privatschulen hervorheben<br>
-          <small><em>(privat wird lila, öffentlich grün)</em></small>
-        </label>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked>
+              Öffentliche Schulen und Privatschulen hervorheben<br>
+              <small><em>(privat wird lila, öffentlich grün)</em></small>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
