@@ -1,7 +1,32 @@
 @import "leaflet/l_control_locate";
 @import "leaflet/l_awesome_markers";
 
+$popover-bg-color: #2c3e50;
+
 .awesome-marker-demo {
   position: relative !important;
   display: inline-block;
+}
+
+.custom-popup {
+  .leaflet-popup-content-wrapper {
+    background: $popover-bg-color;
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    a { color: rgba(255,255,255,0.5); }
+  }
+
+  .leaflet-popup-tip-container {
+    width: 30px;
+    height: 15px;
+  }
+
+  .leaflet-popup-tip {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #2c3e50;
+    background: $popover-bg-color;
+    margin: -17px auto 0;
+  }
 }

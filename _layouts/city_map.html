@@ -23,7 +23,7 @@ layout: base
   {% endif %}
 {% endfor %}
 
-<div class="navbar navbar-default navbar-fixed-top map-navbar">
+<div class="navbar navbar-default map-navbar" style="position: fixed;left: 0; z-index: 1030;">
   <a href="{{ site.github.url }}/stadt/{{ meta.key }}/" title="Karte schließen" class="btn btn-white">
     <span class="fa fa-times"><span class="hidden-sm-down"> schließen</span></span>
   </a>
@@ -102,6 +102,10 @@ layout: base
             <i class="fa fa-circle" style="color: #fff;"></i>
           </span> kein Schulbetrieb (private Schule)
         </p>
+
+        <hr>
+
+        <small><a href="{{ site.github.url }}/imp/" target="_blank">Impressum</a></small>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Hilfe schließen</button>
@@ -110,7 +114,7 @@ layout: base
   </div>
 </div>
 
-<div id="schoolMap"></div>
+<div id="schoolMap" class="custom-popup"></div>
 <script>
   var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
   {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
@@ -157,19 +161,6 @@ layout: base
     iconColor: '#fff'
   });
 
-//  var schoolMarker = L.icon({
-//    iconUrl: '/img/markers/map-pin.svg',
-//    iconSize: [40, 40],
-//    iconAnchor: [20, 40]
-//  });
-
-//  var myIcon = L.divIcon({
-//    iconSize: new L.Point(50, 50),
-////    iconAnchor: new L.Point(50),
-//    className: 'awesome-marker awesome-marker-shadow awesome-marker-icon-red',
-//    html: 'foo bar'
-//  });
-
   // adding data
   $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
     L.geoJson(data, {
@@ -197,7 +188,7 @@ layout: base
         });
       },
       onEachFeature: function (feature, layer) {
-        var rechtsformText, betriebText, schulformText
+        var rechtsformText, betriebText, schulformText, traegerText, conditionalColumnText;
         if(feature.properties.rechtsform_schluessel === '1') {
           rechtsformText = '<span class="label" style="background-color: #2EA6DC">öffentlich</span>';
         } else {
@@ -206,17 +197,34 @@ layout: base
 
         betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
         schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
+        traegerText = '<small>Träger: ' + feature.properties.schultrager + '</small>';
+        conditionalColumnText = traegerText;
+        if(feature.properties.homepage) {
+          conditionalColumnText = (
+            '<div class="row">' +
+              '<div class="col-xs-6">' + traegerText + '</div>' +
+              '<div class="col-xs-6 text-xs-right"><small>' +
+                '<a href="' + feature.properties.homepage + '" target="_blank">' +
+                  'Webseite öffnen <span class="fa fa-external-link"></span>' +
+                '</a>' +
+              '</div>' +
+            '</div>'
+          )
+        }
 
-        layer.bindPopup(
-          '<b>' + feature.properties.schulbezeichnung
-          + '<br><br>'
-          + rechtsformText + ' ' + betriebText
-          + '<br><br>'
-          + schulformText
-          + '<br><br>'
-          + 'Träger: ' + feature.properties.schultrager
-          + '<br><br>'
-        );
+        popupHtml = (
+          '<p>' + feature.properties.schulbezeichnung + '</p>' +
+          rechtsformText + ' ' + schulformText + ' ' + betriebText +
+          '<p class="text-muted">' +
+            feature.properties.strasse + '<br>' +
+            feature.properties.plz + ', ' + feature.properties.ort +
+          '</p>' +
+          conditionalColumnText
+        )
+
+        var popup = L.popup().setContent(popupHtml);
+
+        layer.bindPopup(popup);
       }
     }).addTo(schoolMap);
   });
