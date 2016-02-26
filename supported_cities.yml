@@ -4,6 +4,11 @@
 #    name: "Essen"  #==> city name
 #    key: "essen"   #==> key that is used for the url
 #    city_name_in_postcode_file: "Essen" #==> Name of city in /scripts/.opendata/PLZ.tab file
+#    map_latitude: 51.4507657 # ==> http://www.gpskoordinaten.de
+#    map_longitude: 7.0139047 # ==> http://www.gpskoordinaten.de
+#    map_zoomlevel: 13        # ==> http://www.gpskoordinaten.de
+#
+#
   -
     name: "Essen"
     key: "essen"
@@ -31,4 +36,18 @@
     city_name_in_postcode_file: "Duisburg"
     map_latitude: 51.4293898
     map_longitude: 6.7770832
+    map_zoomlevel: 13
+  -
+    name: "Herne"
+    key: "herne"
+    city_name_in_postcode_file: "Herne"
+    map_latitude: 51.544147
+    map_longitude: 7.217556000000059
+    map_zoomlevel: 13
+  -
+    name: "Gelsenkirchen"
+    key: "gelsenkirchen"
+    city_name_in_postcode_file: "Gelsenkirchen"
+    map_latitude: 51.5049813
+    map_longitude: 7.102084900000023
     map_zoomlevel: 13
