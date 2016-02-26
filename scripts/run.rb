@@ -19,7 +19,7 @@ open_data.process_data!
 
 city_store = CityStore.new
 City.supported_cities.each { |cv| city_store.add_city(City.new(open_data, cv)) }
-city_store.cities.each { |city| city.fetch_schools! }
+city_store.cities.each { |city| city.fetch_schools_from_postcode! }
 city_store.cities.each { |city| city.save_to_files! }
 
 puts 'DONE!!! :)'

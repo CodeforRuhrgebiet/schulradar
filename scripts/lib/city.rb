@@ -27,7 +27,19 @@ class City
     @schools = []
   end
 
-  def fetch_schools!
+  def fetch_schools_from_postcode!
+    puts "Fetching schools for #{@name}..."
+    @postcodes.each do |postcode|
+      schools = @open_data.schools_by_postcode(postcode)
+      schools.each do |school|
+        s = School.new(@open_data, school)
+        @schools.push(s.as_feature)
+      end
+    end
+    puts "Finished fetching schools for #{@name}!"
+  end
+
+  def fetch_schools_from_xml!
     raw = @open_data.read_file('schuldaten.xml')
     doc = Nokogiri::XML(raw)
     xml_schools = doc.search('//Schule')
