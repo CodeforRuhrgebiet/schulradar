@@ -56,7 +56,8 @@ class City
   def save_to_files!
     data = {type: 'FeatureCollection', features: @schools}
     File.open("#{geojson_directory}/#{@key}.geojson", 'w') { |file| file.print data.to_json }
-    File.open("#{city_collection_directory}/#{@key}.md", 'w+') { |f| f.write(render) }
+    File.open("#{city_collection_directory}/#{@key}.md", 'w+') { |f| f.write(ERB.new(city_template).result(binding)) }
+    File.open("#{city_map_collection_directory}/#{@key}.md", 'w+') { |f| f.write(ERB.new(city_map_template).result(binding)) }
   end
 
   private
@@ -69,10 +70,6 @@ class City
     @postcodes.include?(postcode)
   end
 
-  def render
-    ERB.new(template).result(binding)
-  end
-
   def geojson_directory
     "#{@@project_root}/js/cities"
   end
@@ -81,7 +78,15 @@ class City
     "#{@@project_root}/_cities"
   end
 
-  def template
+  def city_map_collection_directory
+    "#{@@project_root}/_city_maps"
+  end
+
+  def city_template
     File.read("#{city_collection_directory}/_city.md.erb")
+  end
+
+  def city_map_template
+    File.read("#{city_map_collection_directory}/_city_map.md.erb")
   end
 end

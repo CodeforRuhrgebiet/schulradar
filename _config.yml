@@ -9,6 +9,7 @@ markdown: kramdown
 exclude:
   - "scripts"
   - "_cities/_city.md.erb"
+  - "_city_maps/_city_map.md.erb"
   - "CNAME"
   - "CONTRIBUTING.md"
   - "Gemfile*"
@@ -20,5 +21,8 @@ sass:
 
 collections:
   cities:
+      output: true
+      permalink: /stadt/:path/
+  city_maps:
     output: true
-    permalink: /stadt/:path/
+    permalink: /stadt/:path/karte/

@@ -1,12 +1,23 @@
 // leaflet map
 #headermap {
-  height: 200px;
   width: 100%;
-  z-index: -1;
+  height: 200px;
 
   &.leaflet-container {
     cursor: default !important;
     background: rgba(#fcf8e3, 0.2) !important;
+  }
+
+  .leaflet-control-attribution {
+    opacity: 0.6;
+    transition: opacity 0.4s;
+    a { color: $gray; }
+  }
+
+  &:hover {
+    .leaflet-control-attribution {
+      opacity: 1;
+    }
   }
 }
 

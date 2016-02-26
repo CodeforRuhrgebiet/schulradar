@@ -11,58 +11,18 @@ layout: default
 
 <div class="container">
 
-  <h1 class="h4 text-xs-center"><mark>Schulen in {{ meta.name }}</mark></h1>
+  <h1 class="h4"><mark>Schulen in {{ meta.name }}</mark></h1>
 
-  <div id="schoolMap" class="m-t-3"></div>
-  <script>
-    var latitude = 51.4818445, longitude = 7.216236299999991, zoomlevel = 10;
-    {% if meta.latitude %} latitude = {{ meta.latitude }}; {% endif %}
-    {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
-    {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
-
-    var schoolMap = L.map('schoolMap').setView([latitude, longitude], zoomlevel);
-
-    // improve experience on mobile
-    if (schoolMap.tap) schoolMap.tap.disable();
-
-    // adding layers
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox &copy; OpenStreetMap</a> | <a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
-      id: 'maschurig.p8gbjfbc',
-      accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
-    }).addTo(schoolMap);
-
-
-    // adding data
-    $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
-      L.geoJson(data, {
-        style: function (feature) {
-          return feature.properties.style;
-        },
-        onEachFeature: function (feature, layer) {
-          var publicText = '<span class="label label-success">öffentlich</span>';
-          var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
-          var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
-
-          layer.bindPopup(
-            '<b>' + feature.properties.schulbezeichnung
-            + '<br><br>'
-            + publicText + ' ' + betriebText
-            + '<br><br>'
-            + schulformText
-            + '<br><br>'
-            + 'Träger: ' + feature.properties.schultrager
-            + '<br><br>'
-          );
-        }
-      }).addTo(schoolMap);
-    });
-  </script>
-
+  <div class="row m-t-3">
+    <div class="col-xs-12">
+      <a href="{{ site.github.url }}/stadt/{{ meta.key }}/karte/" class="btn btn-primary">
+        <span class="fa fa-map-o" style="white-space: pre;">  Zur Karte</span>
+      </a>
+    </div>
+  </div>
 
   <br>
   <br>
-  <h2>Auswertungen</h2>
 
-
+  <p>Hier stehen bald Zahlen. Stay tuned!</p>
 </div>
