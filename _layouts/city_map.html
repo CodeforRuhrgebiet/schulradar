@@ -24,35 +24,96 @@ layout: base
 {% endfor %}
 
 <div class="navbar navbar-default navbar-fixed-top map-navbar">
-  <a href="{{ site.github.url }}/stadt/{{ meta.key }}/" title="Karte schließen" class="btn btn-white m-r-2">
-    <span class="fa fa-times"><span class="hidden-sm-down"> Schließen</span></span>
+  <a href="{{ site.github.url }}/stadt/{{ meta.key }}/" title="Karte schließen" class="btn btn-white">
+    <span class="fa fa-times"><span class="hidden-sm-down"> schließen</span></span>
   </a>
-  <button title="Filter einstellen" type="button" class="btn btn-white" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-    <span class="fa fa-filter"><span class="hidden-sm-down"> Filter</span></span>
+  <button title="Hilfe zur Karte" type="button" class="btn btn-white m-l-2" data-toggle="modal" data-target="#helpModal">
+    <span class="fa fa-question-circle"><span class="hidden-sm-down"> Hilfe</span></span>
   </button>
 
-  <div class="collapse m-t-1" id="collapseFilter">
-    <div class="row">
-      <div class="col-xs-11 col-sm-11 col-md-8 col-lg-5">
-        <div class="card card-block">
-          <h2 class="h4">Filter einstellen</h2>
 
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" checked>
-              Schulbetrieb andeuten<br>
-              <small><em>(transparent, wenn nicht in Betrieb)</em></small>
-            </label>
-          </div>
 
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" checked>
-              Öffentliche Schulen und Privatschulen hervorheben<br>
-              <small><em>(privat wird lila, öffentlich grün)</em></small>
-            </label>
-          </div>
-        </div>
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <h2 class="h4">Hilfe zur Karte</h2>
+
+        <p>Jeder Punkt auf der Karte steht für eine Schule.</p>
+
+        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo"></span> öffentliche Schule</p>
+        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo"></span> private Schule</p>
+
+        <hr>
+
+        <p><small class=""><em>
+          Transparente Punkte auf der Karte ehemalige Schulen beziehungsweise Schulen,
+          in denen momentan der Schulbetrieb ruht.
+        </em></small></p>
+
+        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (öffentliche Schule)</p>
+        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (private Schule)</p>
+      </div>
+    </div>
+  </div>
+
+  <!--<button title="Filter einstellen" type="button" class="btn btn-white m-l-2" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">-->
+    <!--<span class="fa fa-filter"><span class="hidden-sm-down"> Filter</span></span>-->
+  <!--</button>-->
+
+  <!--<div class="collapse m-t-1" id="collapseFilter">-->
+    <!--<div class="row">-->
+      <!--<div class="col-xs-11 col-sm-11 col-md-8 col-lg-5">-->
+        <!--<div class="card card-block">-->
+          <!--<h2 class="h4">Filter einstellen</h2>-->
+
+          <!--<div class="checkbox">-->
+            <!--<label>-->
+              <!--<input type="checkbox" checked>-->
+              <!--Schulbetrieb andeuten<br>-->
+              <!--<small><em>(transparent, wenn nicht in Betrieb)</em></small>-->
+            <!--</label>-->
+          <!--</div>-->
+
+          <!--<div class="checkbox">-->
+            <!--<label>-->
+              <!--<input type="checkbox" checked>-->
+              <!--Öffentliche Schulen und Privatschulen hervorheben<br>-->
+              <!--<small><em>(privat wird lila, öffentlich grün)</em></small>-->
+            <!--</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="helpModalLabel">Hilfe zur Karte</h4>
+      </div>
+      <div class="modal-body">
+        <p>Jeder Punkt auf der Karte steht für eine Schule.</p>
+
+        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo"></span> öffentliche Schule</p>
+        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo"></span> private Schule</p>
+
+        <hr>
+
+        <p><small class=""><em>
+          Transparente Punkte auf der Karte zeigen ehemalige Schulen bzw. Schulen,
+          in denen momentan der Schulbetrieb ruht.
+        </em></small></p>
+
+        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (öffentliche Schule)</p>
+        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (private Schule)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Hilfe schließen</button>
       </div>
     </div>
   </div>
@@ -123,10 +184,20 @@ layout: base
     L.geoJson(data, {
       pointToLayer: function (feature, latlng) {
         var markerIcon, markerOpacity = 1;
-        if(feature.properties.rechtsform == 'privat') {
-          markerIcon = privateSchoolMarker;
-        } else {
+        if(feature.properties.rechtsform_schluessel === '1') {
           markerIcon = publicSchoolMarker;
+        } else {
+          markerIcon = privateSchoolMarker;
+        }
+
+        if(feature.properties.schulbetrieb_schluessel === '0' ||
+            feature.properties.schulbetrieb_schluessel === '1' ||
+            feature.properties.schulbetrieb_schluessel === '2' ||
+            feature.properties.schulbetrieb_schluessel === '6'
+        ) {
+          markerOpacity = 1;
+        } else {
+          markerOpacity = 0.3;
         }
 
         return new L.marker(latlng, {
@@ -136,11 +207,10 @@ layout: base
       },
       onEachFeature: function (feature, layer) {
         var rechtsformText, betriebText, schulformText
-
-        if(feature.properties.rechtsform == 'privat') {
-          rechtsformText = '<span class="label" style="background-color: #CF4BB7">privat</span>';
-        } else {
+        if(feature.properties.rechtsform_schluessel === '1') {
           rechtsformText = '<span class="label" style="background-color: #2EA6DC">öffentlich</span>';
+        } else {
+          rechtsformText = '<span class="label" style="background-color: #CF4BB7">privat</span>';
         }
 
         betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
