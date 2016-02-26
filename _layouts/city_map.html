@@ -2,6 +2,8 @@
 layout: base
 ---
 
+<script src="{{ '/js/lib/L.Control.Locate.min.js' | site.github.url }}"></script>
+
 <style>
   body {
     padding: 0;
@@ -20,6 +22,36 @@ layout: base
   {% endif %}
 {% endfor %}
 
+<div class="navbar navbar-default navbar-fixed-top map-navbar">
+  <a href="{{ site.github.url }}/stadt/{{ meta.key }}/" title="Karte schließen" class="btn btn-white m-r-2">
+    <span class="fa fa-times"></span>
+  </a>
+  <button title="Filter einstellen" type="button" class="btn btn-white" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+    <span class="fa fa-filter"></span>
+  </button>
+
+  <div class="collapse m-t-1" id="collapseFilter">
+    <div class="card card-block">
+      <h2 class="h4">Filter einstellen</h2>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" checked>
+          Schulbetrieb andeuten<br>
+          <small><em>(transparent, wenn nicht in Betrieb)</em></small>
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" checked>
+          Öffentliche Schulen und Privatschulen hervorheben<br>
+          <small><em>(privat wird lila, öffentlich grün)</em></small>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="schoolMap"></div>
 <script>
@@ -30,6 +62,18 @@ layout: base
 
   var schoolMap = L.map('schoolMap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
   new L.Control.Zoom({ position: 'topright' }).addTo(schoolMap);
+  L.control.locate({
+    position: 'topright',  // set the location of the control
+    strings: {
+      title: "Zeige mir wo ich bin",
+      metersUnit: "Meter",
+      feetUnit: "Fuß",
+      popup: "Du bist innerhalb {distance} {unit} von diesem Punkt aus",
+      outsideMapBoundsMsg: "Du befindest dich anscheint außerhalb der verfügbaren Karte"
+    },
+    locateOptions: { maxZoom: 16 }
+  }).addTo(schoolMap);
+
 
   // improve experience on mobile
   if (schoolMap.tap) schoolMap.tap.disable();

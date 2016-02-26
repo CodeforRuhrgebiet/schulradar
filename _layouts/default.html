@@ -10,13 +10,7 @@ layout: base
 {{ content }}
 
 {% unless page.url contains '/ueber' %}
-<div class="jumbotron jumbotron-fluid m-t-3" style="background: #79CCC9;">
-  <div class="container text-xs-center text-white">
-    <p class="lead">Wir nutzen <strong>Offene Daten</strong>, um dieses Projekt zu realisieren.</p>
-    <br>
-    <a href="{{ site.github.url }}/ueber" class="btn btn-white-outline"><strong>Jetzt mehr erfahren</strong></a>
-  </div>
-</div>
+  {% include open_data_teaser.html %}
 {% endunless %}
 
 {% include footer.html %}
