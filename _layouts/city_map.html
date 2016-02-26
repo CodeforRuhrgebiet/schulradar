@@ -31,31 +31,6 @@ layout: base
     <span class="fa fa-question-circle"><span class="hidden-sm-down"> Hilfe</span></span>
   </button>
 
-
-
-  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <h2 class="h4">Hilfe zur Karte</h2>
-
-        <p>Jeder Punkt auf der Karte steht für eine Schule.</p>
-
-        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo"></span> öffentliche Schule</p>
-        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo"></span> private Schule</p>
-
-        <hr>
-
-        <p><small class=""><em>
-          Transparente Punkte auf der Karte ehemalige Schulen beziehungsweise Schulen,
-          in denen momentan der Schulbetrieb ruht.
-        </em></small></p>
-
-        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (öffentliche Schule)</p>
-        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (private Schule)</p>
-      </div>
-    </div>
-  </div>
-
   <!--<button title="Filter einstellen" type="button" class="btn btn-white m-l-2" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">-->
     <!--<span class="fa fa-filter"><span class="hidden-sm-down"> Filter</span></span>-->
   <!--</button>-->
@@ -99,8 +74,16 @@ layout: base
       <div class="modal-body">
         <p>Jeder Punkt auf der Karte steht für eine Schule.</p>
 
-        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo"></span> öffentliche Schule</p>
-        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo"></span> private Schule</p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> öffentliche Schule
+        </p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> private Schule
+        </p>
 
         <hr>
 
@@ -109,8 +92,16 @@ layout: base
           in denen momentan der Schulbetrieb ruht.
         </em></small></p>
 
-        <p><span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (öffentliche Schule)</p>
-        <p><span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3"></span> kein Schulbetrieb (private Schule)</p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-blue awesome-marker-demo" style="opacity: 0.3">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> kein Schulbetrieb (öffentliche Schule)
+        </p>
+        <p>
+          <span class="awesome-marker awesome-marker-icon-purple awesome-marker-demo" style="opacity: 0.3">
+            <i class="fa fa-circle" style="color: #fff;"></i>
+          </span> kein Schulbetrieb (private Schule)
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Hilfe schließen</button>
