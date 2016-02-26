@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html>
+---
+layout: base
+---
 
-  {% include head.html %}
+{% include header.html %}
 
-  <body>
+<br>
+<br>
 
-    {% include header.html %}
+{{ content }}
 
+{% unless page.url contains '/ueber' %}
+<div class="jumbotron jumbotron-fluid m-t-3" style="background: #79CCC9;">
+  <div class="container text-xs-center text-white">
+    <p class="lead">Wir nutzen <strong>Offene Daten</strong>, um dieses Projekt zu realisieren.</p>
     <br>
-    <br>
+    <a href="{{ site.github.url }}/ueber" class="btn btn-white-outline"><strong>Jetzt mehr erfahren</strong></a>
+  </div>
+</div>
+{% endunless %}
 
-    {{ content }}
-
-    {% unless page.url contains '/ueber' %}
-    <div class="jumbotron jumbotron-fluid m-t-3" style="background: #79CCC9;">
-      <div class="container text-xs-center text-white">
-        <p class="lead">Wir nutzen <strong>Offene Daten</strong>, um dieses Projekt zu realisieren.</p>
-        <br>
-        <a href="{{ site.github.url }}/ueber" class="btn btn-white-outline"><strong>Jetzt mehr erfahren</strong></a>
-      </div>
-    </div>
-    {% endunless %}
-
-    {% include footer.html %}
-
-    <script src="{{ '/js/application.js' | site.github.url }}"></script>
-  </body>
-</html>
+{% include footer.html %}

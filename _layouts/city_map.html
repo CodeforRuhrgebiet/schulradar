@@ -1,6 +1,17 @@
 ---
-layout: default
+layout: base
 ---
+
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  html, body, #schoolMap {
+    height: 100%;
+    width: 100%;
+  }
+</style>
 
 {% for city in site.cities %}
   {% if page.key == city.key %}
@@ -17,7 +28,8 @@ layout: default
   {% if meta.longitude %} longitude = {{ meta.longitude }}; {% endif %}
   {% if meta.zoomlevel %} zoomlevel = {{ meta.zoomlevel }}; {% endif %}
 
-  var schoolMap = L.map('schoolMap').setView([latitude, longitude], zoomlevel);
+  var schoolMap = L.map('schoolMap', { zoomControl: false }).setView([latitude, longitude], zoomlevel);
+  new L.Control.Zoom({ position: 'topright' }).addTo(schoolMap);
 
   // improve experience on mobile
   if (schoolMap.tap) schoolMap.tap.disable();
