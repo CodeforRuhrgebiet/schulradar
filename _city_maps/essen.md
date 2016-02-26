@@ -4,7 +4,7 @@ layout: city_map
 key: essen
 path: essen
 name: Essen
-latitude: 51.4507657
-longitude: 7.0139047
+latitude: 51.4526171
+longitude: 7.012371600000051
 zoomlevel: 13
 ---

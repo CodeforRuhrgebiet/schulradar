@@ -13,8 +13,8 @@
     name: "Essen"
     key: "essen"
     city_name_in_postcode_file: "Essen"
-    map_latitude: 51.4507657
-    map_longitude: 7.0139047
+    map_latitude: 51.4526171
+    map_longitude: 7.012371600000051
     map_zoomlevel: 13
   -
     name: "Bochum"
@@ -51,3 +51,17 @@
     map_latitude: 51.5049813
     map_longitude: 7.102084900000023
     map_zoomlevel: 13
+  -
+    name: "Recklinghausen"
+    key: "recklinghausen"
+    city_name_in_postcode_file: "Recklinghausen"
+    map_latitude: 51.6162597
+    map_longitude: 7.20307779999996
+    map_zoomlevel: 13
+  -
+    name: "Dorsten"
+    key: "dorsten"
+    city_name_in_postcode_file: "Dorsten"
+    map_latitude: 51.65840710000001
+    map_longitude: 6.970440999999937
+    map_zoomlevel: 14
