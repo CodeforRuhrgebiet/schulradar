@@ -3,6 +3,7 @@ layout: base
 ---
 
 <script src="{{ '/js/lib/L.Control.Locate.min.js' | site.github.url }}"></script>
+<script src="{{ '/js/lib/leaflet.awesome-markers.min.js' | site.github.url }}"></script>
 
 <style>
   body {
@@ -89,22 +90,66 @@ layout: base
     accessToken: 'pk.eyJ1IjoibWFzY2h1cmlnIiwiYSI6ImNpbDJiajEzejAwY2F3OW0wOG95czR5eXkifQ.igaYJkeB7_dF36mj4N1Jvg'
   }).addTo(schoolMap);
 
+  L.AwesomeMarkers.Icon.prototype.options.prefix = 'fa';
+  L.AwesomeMarkers.Icon.prototype.options.extraClasses = 'lalalala';
+
+  var publicSchoolMarker = L.AwesomeMarkers.icon({
+    icon: 'circle',
+    markerColor: 'blue',
+    iconColor: '#fff'
+  });
+
+  var privateSchoolMarker = L.AwesomeMarkers.icon({
+    icon: 'circle',
+    markerColor: 'purple',
+    iconColor: '#fff'
+  });
+
+//  var schoolMarker = L.icon({
+//    iconUrl: '/img/markers/map-pin.svg',
+//    iconSize: [40, 40],
+//    iconAnchor: [20, 40]
+//  });
+
+//  var myIcon = L.divIcon({
+//    iconSize: new L.Point(50, 50),
+////    iconAnchor: new L.Point(50),
+//    className: 'awesome-marker awesome-marker-shadow awesome-marker-icon-red',
+//    html: 'foo bar'
+//  });
 
   // adding data
   $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
     L.geoJson(data, {
-      style: function (feature) {
-        return feature.properties.style;
+      pointToLayer: function (feature, latlng) {
+        var markerIcon, markerOpacity = 1;
+        if(feature.properties.rechtsform == 'privat') {
+          markerIcon = privateSchoolMarker;
+        } else {
+          markerIcon = publicSchoolMarker;
+        }
+
+        return new L.marker(latlng, {
+          icon: markerIcon,
+          opacity: markerOpacity
+        });
       },
       onEachFeature: function (feature, layer) {
-        var publicText = '<span class="label label-success">öffentlich</span>';
-        var betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
-        var schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
+        var rechtsformText, betriebText, schulformText
+
+        if(feature.properties.rechtsform == 'privat') {
+          rechtsformText = '<span class="label" style="background-color: #CF4BB7">privat</span>';
+        } else {
+          rechtsformText = '<span class="label" style="background-color: #2EA6DC">öffentlich</span>';
+        }
+
+        betriebText = '<span class="label label-default">' + feature.properties.schulbetrieb + '</span>';
+        schulformText = '<span class="label label-warning">' + feature.properties.schulform + '</span>';
 
         layer.bindPopup(
           '<b>' + feature.properties.schulbezeichnung
           + '<br><br>'
-          + publicText + ' ' + betriebText
+          + rechtsformText + ' ' + betriebText
           + '<br><br>'
           + schulformText
           + '<br><br>'
