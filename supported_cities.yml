@@ -65,3 +65,10 @@
     map_latitude: 51.65840710000001
     map_longitude: 6.970440999999937
     map_zoomlevel: 14
+  -
+    name: "Moers"
+    key: "moers"
+    city_name_in_postcode_file: "Moers"
+    map_latitude: 51.4516041
+    map_longitude: 6.640814800000044
+    map_zoomlevel: 14
