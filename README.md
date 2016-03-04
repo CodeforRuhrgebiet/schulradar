@@ -14,7 +14,7 @@
 - [x] Ruhrgebiet filtern *(es werden jetzt immer mehr Städte hinzugefügt, weil Grenzen zu schwammig sind)*
 - [x] Daten visualisieren
 - [ ] [Statistische Daten berechnen und anzeigen](/../../issues/1)
-- [ ] Webseite umsetzen
+- [x] Webseite umsetzen
 
 ---
 
