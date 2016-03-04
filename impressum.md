@@ -63,6 +63,8 @@ VAT: DE278022128 <br /></p>
 
 <p>Die Website www.okfn.de nutzt Piwik (http://www.piwik.org), einen Open-Source-Webanalysedienst. Piwik verwendet sogenannte &#8220;Cookies&#8221;, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglicht. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse) bleiben dabei unter der Datenhoheit von www.okfn.de. Wir benutzen diese Informationen, um die Nutzung auszuwerten und um Reports über die Websiteaktivitäten zusammenzustellen. OKF DE wird diese Informationen nicht an Dritte übertragen. Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website voll umfänglich nutzen können. Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch www.okfn.de in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden.</p>
 
+<iframe style="border: 0; height: 200px; width: 600px;" src="https://piwik.martin.gs/index.php?module=CoreAdminHome&action=optOut&language=de"></iframe>
+
 <p>V. Newsletter</p>
 
 <p>Bei Anmeldung zum E-Mail-Newsletter wird Ihre E-Mailadresse mit Ihrer Einwilligung für eigene Zwecke genutzt, bis Sie sich vom Newsletter abmelden. Eine Abmeldung ist jederzeit über den dafür vorgesehenen Link im Newsletter oder eine entsprechende Mitteilung an uns möglich.</p>
