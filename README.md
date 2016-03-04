@@ -12,9 +12,9 @@
 - [x] Daten von Datenquelle laden und aufbereiten *(GeoJSON als Zielformat)*
 - [x] Koordinaten konvertieren *(Gauß-Krüger zu WGS84)*
 - [x] Ruhrgebiet filtern *(es werden jetzt immer mehr Städte hinzugefügt, weil Grenzen zu schwammig sind)*
-- [ ] Daten visualisieren
+- [x] Daten visualisieren
 - [ ] [Statistische Daten berechnen und anzeigen](/../../issues/1)
-- [ ] Webseite umsetzen
+- [x] Webseite umsetzen
 
 ---
 
