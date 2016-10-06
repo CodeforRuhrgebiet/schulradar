@@ -52,6 +52,9 @@ class OpenDataStorage
     @schulbetriebe = false
     parse_schulbetriebe!
 
+    @computer_class_schools = false
+    parse_computer_class_schools!
+
     @city_postcodes = {}
     @postcode_schools = {}
     map_schools_to_postcodes!
@@ -111,6 +114,10 @@ class OpenDataStorage
     @postcode_schools[postcode]
   end
 
+  def computer_class_school_keys
+    @computer_class_schools
+  end
+
   private
 
   # Setter
@@ -164,6 +171,13 @@ class OpenDataStorage
       @city_postcodes["#{entry[4]}"] = [] if !@city_postcodes["#{entry[4]}"]
       @city_postcodes["#{entry[4]}"].push("#{entry[1]}")
     end
+  end
+
+  def parse_computer_class_schools!
+    computer_class_schools = {}
+    raw = read_file('informatik_angebot.txt')
+
+    @computer_class_schools = raw.split(",")
   end
 
   def map_schools_to_postcodes!

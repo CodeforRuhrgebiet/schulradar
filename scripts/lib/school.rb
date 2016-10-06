@@ -29,7 +29,8 @@ class School
         strasse: @doc.css('Strasse').children.text,
         plz: @doc.css('PLZ').children.text,
         homepage: @doc.css('Homepage').children.text,
-        schulbetriebsdatum: @doc.css('Schulbetriebsdatum').children.text
+        schulbetriebsdatum: @doc.css('Schulbetriebsdatum').children.text,
+        informatik_unterricht: offers_computer_classes?(@doc.css('Schulnummer').children.text)
       }
     }
   end
@@ -38,5 +39,9 @@ class School
 
   def coordinates
     OpenDataStorage.calc_coordinates(@doc.css('KoordinatenRechtswert').children.text, @doc.css('KoordinatenHochwert').children.text)
+  end
+
+  def offers_computer_classes?(school_number)
+    @open_data.computer_class_school_keys.include?(school_number)
   end
 end
