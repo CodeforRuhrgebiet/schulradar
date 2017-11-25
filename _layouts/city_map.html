@@ -18,7 +18,7 @@ layout: full_size_map
 {% include school_map_leaflet.html %}
 
 <script>
-  $.getJSON( "/js/cities/{{ meta.key }}.geojson", function(data) {
+  $.getJSON( "{{ site.github.url }}/js/cities/{{ meta.key }}.geojson", function(data) {
     addSchoolsToMap(data);
   });
 </script>

@@ -13,7 +13,7 @@ permalink: /gesamtkarte/
 
 <script>
   {% for city in site.city_maps %}
-    $.getJSON( "/js/cities/{{ city.key }}.geojson", function(data) {
+    $.getJSON( "{{ site.github.url }}/js/cities/{{ city.key }}.geojson", function(data) {
       addSchoolsToMap(data);
     });
   {% endfor %}
