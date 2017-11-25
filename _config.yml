@@ -2,9 +2,8 @@ title: "Schulradar Ruhrgebiet"
 description: "Schulen im Ruhrgebiet finden und filtern. Alle Privatschulen und öffentliche Schulen sind hier zu finden."
 url: "https://codeforruhrgebiet.github.io/schulradar/"
 baseurl: "" # the subpath of your site, e.g. /blog
-site:
-  github:
-    url: "https://codeforruhrgebiet.github.io/schulradar"
+github:
+  url: "https://codeforruhrgebiet.github.io/schulradar"
 
 # Build settings
 markdown: kramdown
